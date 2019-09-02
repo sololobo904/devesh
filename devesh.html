@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<title>Devesh ka project</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  	.card{
+  		width:80%;
+  		margin-left:10%;
+  		margin-top:2%;
+  		background-color: #F7F7F7;
+  	}
+  	#userImage{
+  		padding: 0.375rem 2.75rem;
+  		border-radius: 2.25rem;
+  		height: calc(2.5em + .75rem + 1px);
+  		border: 1px solid #707070;
+  		color: #888888;
+  		background-color: #FFFFFF;
+  		cursor:pointer;
+  	}
+  	#image_preview{
+  		display:none;
+  	}
+  	#imagePreviewBox{
+  		width:100%;
+  		border:1px dashed #ced4da;
+  		border-radius: .50rem;
+  	}
+  	#imageUploaded{
+  		border:1px solid #ced4da;
+  	}
+  	#uploadButton{
+  		cursor:pointer;
+  		width:150px;
+  	}
+  	#chooseImage{
+  		margin-bottom:2px;
+  		margin-left:20px;
+  	}
+  	#uploadLabel{
+  		margin-left:20px;
+  	}
+  	#predictButtonDiv{
+  		display:none;
+
+  	}
+  	#predictButton{
+  		cursor:pointer;
+  		width:150px;
+  	}
+
+  </style>
+</head>
+
+<body class="bg-dark">
+	<div class = "container">
+		<div class="card " >
+			<div class="card-title text-center mb-0 mt-3">
+				<h4>Upload your Picture</h4>
+			</div><hr>
+			<div class="card-body">
+			<div class="uploadContent" id="uploadContent">
+	    <div class="form-group">
+	    <label for="userImage" ><h5 id="chooseImage">Choose Image</h5></label>
+	    <input type="file" name="userImage" id="userImage" class="form-control" onchange="readUrl(this)" required accept="image/*" />
+	  	</div>
+	  	<div class="text-center">
+	    <div class="btn btn-primary" id="uploadButton" onclick="visibilityShow()">Upload</div>
+	  	</div>
+	  	</div>
+	  	<div class="text-center" id="predictButtonDiv">
+	  	<div class="btn btn-primary" id="predictButton" >Predict</div><hr>
+	  	</div>
+	  	<div id="image_preview" >
+		    <label for="imageUploaded"><h5 id="uploadLabel">Your Uploaded Image</h5></label>
+		    <div id="imagePreviewBox" class="text-center" >
+		    <img id ="imageUploaded" name="imageUploaded" src="#" alt="Your Uploaded Image" />
+		  	</div>
+	  	</div>
+	  </div>
+
+
+		</div>
+	</div>
+	<script>
+			function visibilityShow(){
+				document.getElementById('image_preview').style.display="block";
+				document.getElementById('predictButtonDiv').style.display="block";
+				document.getElementById('uploadContent').style.display="none";
+			}
+		   function readUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageUploaded')
+                        .attr('src', e.target.result)
+                        .width(400)
+                        .height(400);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+	</script>
+</body>
+</html>
